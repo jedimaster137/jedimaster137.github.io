@@ -1,7 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Sound Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Sound Player</h1>
+    <button id="startButton">Start Playing Sounds</button>
+    <button id="stopButton">Stop</button>
+    <script>
+        const sounds = [
+            new Audio('sound1.mp3'),
+            new Audio('sound2.mp3'),
+            new Audio('sound3.mp3')
+        ];
+        
+        let intervalId;
+
+        document.getElementById('startButton').addEventListener('click', () => {
+            if (intervalId) return; // Prevent multiple intervals
+            intervalId = setInterval(() => {
+                const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+                randomSound.play();
+            }, Math.random() * 5000 + 1000); // Random interval between 1s and 6s
+        });
+
+        document.getElementById('stopButton').addEventListener('click', () => {
+            clearInterval(intervalId);
+            intervalId = null;
+        });
+    </script>
 </body>
-<h1>HELLO WORLD</h1>
-<P>I'M HOSTED WITH GITHUB PAGES.</P>
-</BODY>
 </html>
